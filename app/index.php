@@ -4,9 +4,9 @@ echo "Olá, Mundo";
 echo "<hr>";
 // request á API com pedido de autenticação / autorização
 
-api_request("http://localhost/HTTP-Simples-Authenticacao-PHP-puro/api/", "João", "abc123");
+api_request("http://localhost/HTTP-Simples-Authenticacao-PHP-puro/api/", "Joao", "abc123");
 
-function api_request($endpoint, $user, $pass)
+function api_request($endpoint, $user = NULL, $pass= NULL)
 {
   $curl = curl_init($endpoint);
   $headers = array(
