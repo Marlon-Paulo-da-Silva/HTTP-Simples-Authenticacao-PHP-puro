@@ -8,7 +8,8 @@ $variaveis = [
   
 ];
 
-$resultados = api_request("get_datetime", 'GET', $variaveis);
+// $resultados = api_request("get_datetime", 'GET', $variaveis);
+$resultados = api_request("status", 'GET', $variaveis);
 
 echo '<pre>';
 print_r($resultados);

@@ -1,5 +1,8 @@
 <?php
 
+// incluir as dependencias
+require_once('../inc/authentication.php');
+
 $now = new DateTime();
 
 echo json_encode([
