@@ -1,20 +1,47 @@
 <?php
 
-echo "Olá, Mundo";
-echo "<hr>";
-// request á API com pedido de autenticação / autorização
+require_once("inc/config.php");
 
-api_request("http://localhost/HTTP-Simples-Authenticacao-PHP-puro/api/", "Joao", "abc123");
+$variaveis = [
+  'id' => '1',
+  'nome' => 'marlon',
+  
+];
 
-function api_request($endpoint, $user = NULL, $pass= NULL)
+$resultados = api_request("get_datetime", 'GET', $variaveis);
+
+echo '<pre>';
+print_r($resultados);
+
+
+function api_request($endpoint, $method =  'GET', $variables = [])
 {
-  $curl = curl_init($endpoint);
+  $curl = curl_init();
   $headers = array(
     'Content-Type: application/json',
-    'Authorization: Basic ' . base64_encode("$user:$pass")
+    'Authorization: Basic ' . base64_encode(API_USER . ":" . API_PASS)
   );
   curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
   curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+
+  // define a url
+  $url = API_BASE_ENDPOINT . $endpoint . "/";
+
+  if($method == 'GET'){
+      if(!empty($variables)){
+          $url .= "?" . http_build_query($variables);
+      }
+  }
+  
+  
+  //if request if POST
+  if ($method == 'POST'){
+    $variables = array_merge(['endpoint' => $endpoint], $variables);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $variables);
+  }
+  
+  //define a url do CURL
+  curl_setopt($curl, CURLOPT_URL, $url);
 
   $response = curl_exec($curl);
 
@@ -24,6 +51,6 @@ function api_request($endpoint, $user = NULL, $pass= NULL)
 
   curl_close($curl);
 
-  echo $response;
+  return json_decode($response, true);
 
 }

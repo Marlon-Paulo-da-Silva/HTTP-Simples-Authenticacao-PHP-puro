@@ -1,8 +1,8 @@
 <?php
 
 // verifica se existe user e passa dentro da request HTTP
-if(!isset($_SERVER['PHP_AUTH_USER'])){
-  if(!isset($_SERVER['PHP_AUTH_PW'])){
+if(empty($_SERVER['PHP_AUTH_USER'])){
+  if(empty($_SERVER['PHP_AUTH_PW'])){
     echo json_decode([
       'status' => 'ERROR',
       'message' => 'Invalid access'
