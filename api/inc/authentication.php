@@ -9,8 +9,30 @@ if(empty($_SERVER['PHP_AUTH_USER'])){
     ]);
     exit();
   }
-
+  
 }
+
+
+// verificar se a autenticação é válida
+require_once('config.php');
+require_once('database.php');
+
+$db = new database();
+
+$params = [
+  ':user' => $_SERVER['PHP_AUTH_USER'],
+  ':pass' => $_SERVER['PHP_AUTH_PW']
+];
+
+
+$results = $db->EXE_QUERY("SELECT id_client FROM `authentication` WHERE username = :user AND passwrd = :pass", $params);
+if(count($results) > 0){
+  $valid_authentication = true;
+} else {
+  $valid_authentication = false;
+}
+
+
 
 // usuários permitidos
 $usuario = array();
@@ -29,17 +51,7 @@ $usuarios = [
   ],
 ];
 
-// verifica se user e pass tem autenticação válida
-$user = $_SERVER['PHP_AUTH_USER'];
-$pass = $_SERVER['PHP_AUTH_PW'];
 
-$valid_authentication = false;
-
-foreach($usuarios as $usu){
-  if($usu['user'] == $user && $usu['pass'] == $pass){
-    $valid_authentication = true;
-  }
-}
 
 // invalid authentication
 if(!$valid_authentication){
