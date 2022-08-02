@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 18-Jul-2022 às 17:32
+-- Tempo de geração: 01-Ago-2022 às 16:21
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -18,8 +18,31 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `loja_api`
+-- Banco de dados: `lojaapi`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `authentication`
+--
+
+CREATE TABLE `authentication` (
+  `id_client` int(11) UNSIGNED NOT NULL,
+  `client_name` varchar(50) DEFAULT NULL,
+  `username` varchar(50) DEFAULT NULL,
+  `passwrd` varchar(200) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL,
+  `updated_at` datetime DEFAULT NULL,
+  `deleted_at` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Extraindo dados da tabela `authentication`
+--
+
+INSERT INTO `authentication` (`id_client`, `client_name`, `username`, `passwrd`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'Joao', 'Joao', 'abc123', '2022-08-01 11:08:11', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -101,6 +124,12 @@ INSERT INTO `produtos` (`id_produto`, `produto`, `quantidade`, `created_at`, `up
 --
 
 --
+-- Índices para tabela `authentication`
+--
+ALTER TABLE `authentication`
+  ADD PRIMARY KEY (`id_client`);
+
+--
 -- Índices para tabela `clientes`
 --
 ALTER TABLE `clientes`
@@ -121,6 +150,12 @@ ALTER TABLE `produtos`
 --
 -- AUTO_INCREMENT de tabelas despejadas
 --
+
+--
+-- AUTO_INCREMENT de tabela `authentication`
+--
+ALTER TABLE `authentication`
+  MODIFY `id_client` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `clientes`

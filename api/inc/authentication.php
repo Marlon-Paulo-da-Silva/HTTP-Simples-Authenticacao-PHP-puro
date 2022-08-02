@@ -21,13 +21,20 @@ $db = new database();
 
 $params = [
   ':user' => $_SERVER['PHP_AUTH_USER'],
-  ':pass' => $_SERVER['PHP_AUTH_PW']
+  // ':pass' => $_SERVER['PHP_AUTH_PW']
 ];
 
 
-$results = $db->EXE_QUERY("SELECT id_client FROM `authentication` WHERE username = :user AND passwrd = :pass", $params);
+$results = $db->EXE_QUERY("SELECT * FROM `authentication` WHERE username = :user", $params);
 if(count($results) > 0){
-  $valid_authentication = true;
+
+  $usuario = $results[0];
+  if(password_verify($_SERVER['PHP_AUTH_PW'], $usuario['passwrd'])){
+    $valid_authentication = true;
+  } else {
+    $valid_authentication = false;
+  }
+
 } else {
   $valid_authentication = false;
 }
