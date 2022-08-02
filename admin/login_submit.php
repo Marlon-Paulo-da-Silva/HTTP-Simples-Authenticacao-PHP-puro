@@ -9,5 +9,13 @@
   $senha = $_POST['text_senha'];
 
   // validação
-  
+  if(empty($usuario) || empty($senha)){
+    $_SESSION['error'] = 'Dados insuficientes';
+
+    header('Location: index.php');
+
+  }
+
+  echo 'ok';
+
 ?>

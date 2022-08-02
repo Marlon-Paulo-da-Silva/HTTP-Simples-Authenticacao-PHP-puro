@@ -6,12 +6,12 @@
       <form action="index.php" method="post">
         <div class="mb-3">
           <label for="" class="form-label">Usuário</label>
-          <input type="text" name="text_usuario" class="form-control">
+          <input type="text" name="text_usuario" class="form-control" required>
         </div>
         
         <div class="mb-3">
           <label for="" class="form-label">Senha</label>
-          <input type="password" name="text_senha" class="form-control">
+          <input type="password" name="text_senha" class="form-control" required>
         </div>
 
         <div class="text-center">
@@ -19,6 +19,15 @@
         </div>
 
       </form>
+
+      <?php if(isset($_SESSION['error'])){ ?>
+        <div class="row mt-2">
+          <div class="col text-center alert alert-danger p-2">
+            <?= $_SESSION['error'] ?>
+            <?php unset($_SESSION['error']);  ?>
+          </div>
+        </div>
+      <?php }?>
     </div>
   </div>
 </div>
