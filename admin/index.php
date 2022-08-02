@@ -20,6 +20,7 @@ if(!isset($_SESSION['id_admin']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
   $rota = 'login_submit';
 } else {
   // ... 
+  die('Existe usuário na sessão');
 }
 
 // execução da rota

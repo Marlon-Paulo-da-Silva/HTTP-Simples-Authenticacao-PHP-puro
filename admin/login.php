@@ -21,10 +21,12 @@
       </form>
 
       <?php if(isset($_SESSION['error'])){ ?>
-        <div class="row mt-2">
-          <div class="col text-center alert alert-danger p-2">
-            <?= $_SESSION['error'] ?>
-            <?php unset($_SESSION['error']);  ?>
+        <div class="row ">
+          <div class="col mt-2">
+            <div class="text-center alert alert-danger p-2">
+              <?= $_SESSION['error'] ?>
+              <?php unset($_SESSION['error']);  ?>
+            </div>
           </div>
         </div>
       <?php }?>
