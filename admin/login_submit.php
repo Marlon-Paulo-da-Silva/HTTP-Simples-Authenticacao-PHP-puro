@@ -1,5 +1,13 @@
 <?php defined('ROOT') or die('Acesso inválido'); ?>
 
 <?php
-  echo 'OK !!!';
+  if($_SERVER['REQUEST_METHOD'] != 'POST'){
+    die('Acesso inválido');
+  }
+
+  $usuario = $_POST['text_usuario'];
+  $senha = $_POST['text_senha'];
+
+  // validação
+  
 ?>

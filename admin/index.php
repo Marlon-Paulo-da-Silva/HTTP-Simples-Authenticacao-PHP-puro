@@ -11,21 +11,47 @@ require_once('inc/database.php');
 
 require_once('inc/html_header.php');
 
+// definir rota
+$rota = '';
 
-
-// verifica se existe uma administrador logado
-if(!isset($_SESSION['id_admin'])){
-  
-  // apresenta o quadro de login
-  require_once('login.php');
-  return;
+if(!isset($_SESSION['id_admin']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
+  $rota = 'login';
+} elseif(!isset($_SESSION['id_admin']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
+  $rota = 'login_submit';
 } else {
-
+  // ... 
 }
 
+// execução da rota
+switch ($rota) {
+  case 'login':
+    require_once('login.php');
+    break;
 
+  case 'login_submit':
+    require_once('login_submit.php');
+    break;
+  
+  default:
+    echo 'Rota não definida';
+    break;
+}
 
-echo '<h3>Olá, Mundo</h3>';
+/*
+nenhum admin logado
+admin logado
+*/
+
+// verifica se existe uma administrador logado
+// if(!isset($_SESSION['id_admin'])){
+  
+//   // apresenta o quadro de login
+//   require_once('login.php');
+//   return;
+// } else {
+
+// }
+
 
 
 
