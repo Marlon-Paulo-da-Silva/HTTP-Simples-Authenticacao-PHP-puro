@@ -19,8 +19,7 @@ if(!isset($_SESSION['id_admin']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
 } elseif(!isset($_SESSION['id_admin']) && $_SERVER['REQUEST_METHOD'] == 'POST'){
   $rota = 'login_submit';
 } else {
-  // ... 
-  die('Existe usuário na sessão');
+  $rota = 'home';
 }
 
 // execução da rota
@@ -31,6 +30,10 @@ switch ($rota) {
 
   case 'login_submit':
     require_once('login_submit.php');
+    break;
+
+  case 'home':
+    require_once('backoffice/home.php');
     break;
   
   default:

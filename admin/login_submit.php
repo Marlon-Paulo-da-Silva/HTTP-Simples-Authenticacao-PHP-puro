@@ -45,8 +45,4 @@
   // redirecionar para a página inicial (index)
   header('Location: index.php');
 
-
-
-  print_r($resultados);
-
 ?>
