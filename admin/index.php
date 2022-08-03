@@ -20,6 +20,11 @@ if(!isset($_SESSION['id_admin']) && $_SERVER['REQUEST_METHOD'] != 'POST'){
   $rota = 'login_submit';
 } else {
   $rota = 'home';
+
+  // se existir uma rota definida
+  if(isset($_GET['r'])){
+    $rota = $_GET['r'];
+  }
 }
 
 // execução da rota
@@ -31,9 +36,14 @@ switch ($rota) {
   case 'login_submit':
     require_once('login_submit.php');
     break;
-
+  
+  // após login
   case 'home':
     require_once('backoffice/home.php');
+    break;
+  
+  case 'new_client':
+    require_once('backoffice/new_client.php');
     break;
   
   default:
