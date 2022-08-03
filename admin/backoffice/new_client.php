@@ -6,31 +6,34 @@
   <div class="row my-5">
     <div class="col">
       <div class="col-sm-6 offset-sm-3">
-        <h3 class="text-center">Novo Cliente</h3>
-        <hr>
-        <div class="mb-3">
-          <label>Cliente:</label>
-          <input type="text" name="text_cliente" class="form-control" required>
-        </div>
-        
-        <div class="mb-3">
-          <label>Username:</label>
-          <input type="text" name="text_usuario" id="usuario" class="form-control" readonly required>
-        </div>
-        
-        <div class="mb-3">
-          <label>Senha:</label>
-          <input type="text" name="text_senha" id="senha" class="form-control" readonly required>
-        </div>
+        <form action="">
+          <h3 class="text-center">Novo Cliente</h3>
+          <hr>
+          <div class="mb-3">
+            <label>Cliente:</label>
+            <input type="text" name="text_cliente" class="form-control" required>
+          </div>
+          
+          <div class="mb-3">
+            <label>Username:</label>
+            <input type="text" name="text_usuario" id="usuario" class="form-control" readonly required>
+          </div>
+          
+          <div class="mb-3">
+            <label>Senha:</label>
+            <input type="text" name="text_senha" id="senha" class="form-control" readonly required>
+          </div>
+  
+          <div class="mb-3 text-end">
+            <button class="btn btn-primary " onClick="gerarUsuarioPassword()">Regerar</button>
+          </div>
+  
+          <div class="mb-3 text-center">
+            <input type="submit" value="Criar" class="btn btn-primary btn-150">
+            <a href="?r=home" class="btn btn-secondary btn-150">Cancelar</a>
+          </div>
 
-        <div class="mb-3 text-end">
-          <button class="btn btn-primary " onClick="gerarUsuarioPassword()">Gerar</button>
-        </div>
-
-        <div class="mb-3 text-center">
-          <input type="submit" value="Criar" class="btn btn-primary btn-150">
-          <a href="?r=home" class="btn btn-secondary btn-150">Cancelar</a>
-        </div>
+        </form>
 
       </div>
     </div>
@@ -63,4 +66,7 @@
 
 
   }
+
+  // gerar username
+  gerarUsuarioPassword();
 </script>
