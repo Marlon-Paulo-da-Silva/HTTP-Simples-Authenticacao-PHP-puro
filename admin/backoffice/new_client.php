@@ -1,12 +1,37 @@
 <?php defined('ROOT') or die('Acesso inválido'); ?>
 
-<?php require_once('navegacao.php') ?>
+<?php 
+  require_once('navegacao.php');
+
+  // no caso de existir um post
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
+    /*
+      validação de dados
+        - FEITO ver se todos os dados vieram no post
+        - verificar se existe cliente com o mesmo nome na bd
+        - verificar se existe cliente com o mesmo username
+        - inserir o usuario na bd
+        - voltar de imediato ao quadro inicial
+    */
+
+    // ver se todos os dados existem
+    $error = "";
+    if(!isset($_POST['text_cliente']) || !isset($_POST['text_usuario']) || !isset($_POST['text_senha'])){
+      $error = "Não foram fornecidos todos os dados";
+    }
+
+    // verificar se existe cliente com o mesmo nome na bd
+    $cliente = $_POST['text_cliente'];
+  }
+  
+?>
+
 
 <div class="container">
   <div class="row my-5">
     <div class="col">
       <div class="col-sm-6 offset-sm-3">
-        <form action="">
+        <form action="?r=new_client" method="post">
           <h3 class="text-center">Novo Cliente</h3>
           <hr>
           <div class="mb-3">
@@ -34,6 +59,12 @@
           </div>
 
         </form>
+
+        <?php if(!empty($error)){?>
+          <p class="alert alert-danger p-2 text-center">
+            <?= $error ?>
+          </p>  
+        <?php }?>
 
       </div>
     </div>
@@ -67,6 +98,6 @@
 
   }
 
-  // gerar username
+  // gerar username e senha
   gerarUsuarioPassword();
 </script>

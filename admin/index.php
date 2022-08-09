@@ -46,6 +46,10 @@ switch ($rota) {
     require_once('backoffice/new_client.php');
     break;
   
+  case 'new_client_submit':
+    require_once('backoffice/new_client.php');
+    break;
+  
   default:
     echo 'Rota não definida';
     break;
