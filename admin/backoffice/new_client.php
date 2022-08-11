@@ -21,7 +21,30 @@
     }
 
     // verificar se existe cliente com o mesmo nome na bd
-    $cliente = $_POST['text_cliente'];
+    if(empty($error)){
+      
+      $cliente = $_POST['text_cliente'];
+      $usuario = $_POST['text_usuario'];
+      $senha = $_POST['text_senha'];
+  
+      $bd = new database();
+  
+      $parametros = [
+        ':cliente' => $cliente
+      ];
+      $resultados = $bd->EXE_QUERY("SELECT * FROM `authentication` WHERE client_name = :cliente", $parametros);
+  
+      if(empty($resultados)){
+        die('OK !!!');
+      }
+      
+    }
+
+    if(empty($resultados)){
+      $error = "Já existe um cliente com o mesmo nome.";
+      echo 'OK';
+    }
+    
   }
   
 ?>
